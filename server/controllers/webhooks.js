@@ -81,7 +81,7 @@ switch (event.type) {
 
         const {purchaseId} = session.data[0].metadata;
 
-        const purchaseData = await Purchase.finById(purchaseId)
+        const purchaseData = await Purchase.findById(purchaseId)
         const userData = await User.findById(purchaseData.userId)
         const courseData = await Course.findById(purchaseData.courseId.toString())
 
@@ -98,7 +98,7 @@ switch (event.type) {
 
 
 
-    case 'payment_method.attached':{
+    case 'payment_intent.payment_failed':{
         const paymentIntent = event.data.object;
         const paymentIntentId = paymentIntent.id;
   
